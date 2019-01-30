@@ -22,22 +22,31 @@ class HolidaysController < ApplicationController
   end
 
   def show
+    @comments = @holiday.tour_comments
   end
 
   def edit
   end
 
   def update
-    #code
+    if @holiday.update(holiday_param)
+      flash[:notice] = "Tour successfully updated"
+      redirect_to holiday_path(@holiday.id)
+    else
+      flash[:error] = "Tour has error with created"
+      render 'edit'
+    end
   end
 
   def destroy
-    #code
+    @holiday.destroy
+    redirect_to root_path
   end
-  private
+private
   def holiday_param
     params.require(:holiday).permit(:user_id, :name, :description, :price, :pricetype_id, :contacts, {photos: []})
   end
+
   def find_holiday
    @holiday = Holiday.find_by(id: params[:id])
  end

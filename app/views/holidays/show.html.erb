@@ -1,4 +1,28 @@
-<h1>Holidays#show</h1>
-<p>Find me in app/views/holidays/show.html.erb</p>
+<h1><%= @holiday.name %><br></h1>
+<strong>Price: </strong>
+<%= @holiday.price %>
+<%= Pricetype.find_by(id: @holiday.pricetype_id).try(:title) %> <br> <br>
+<%= @holiday.description %><br> <br>
+<strong>Photos:</strong> <br>
+	<% @holiday.photos.each do | photo | %>
+		<%= image_tag(photo.url, size: "500x300")%>	<br> <br>
+	<% end %>
+<strong>Contact us:</strong> <br>
+<%= @holiday.contacts %>
+<hr>
 
-	Category: <%= Pricetype.find_by(id: @holiday.pricetype_id).try(:title) %> <br>
+
+<h2>Comments:</h2> <hr>
+ <% @comments.each do |comment| %>
+   <p>
+    User <b><%= comment.user.email %></b> write: <br />
+  <h3> <%= comment.body %><br /></h3> 
+   </p>
+<br>
+<% end %>
+<p><%= link_to "Write Comment", new_holiday_tour_comment_path(@holiday.id) %></p>
+<% if @holiday.user_id == current_user.id %>
+  <hr>
+  <%= link_to "Edit", edit_holiday_path %> |
+  <%= link_to "Delete", holiday_path(@holiday.id), method: :delete %>
+<% end %>

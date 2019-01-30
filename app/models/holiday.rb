@@ -3,4 +3,5 @@ class Holiday < ApplicationRecord
   has_one :category
   mount_uploaders :photos, PhotoUploader
  serialize :photos, JSON # If you use SQLite, add this line.
+ has_many :tour_comments
 end

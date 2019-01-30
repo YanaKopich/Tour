@@ -1,2 +1,15 @@
-<h1>Holidays#index</h1>
-<p>Find me in app/views/holidays/index.html.erb</p>
+<h1>Tour by Yana Kopich</h1>
+<% if @holidays == [] %>
+  <p>Tours is dont exist</p>
+<% else %>
+  <% @holidays.each do |holiday| %>
+    <hr>
+   	<h2><%= holiday.name %><br/></h2>
+    <strong>Price: </strong>
+    	<%= holiday.price %>
+      <%= Pricetype.find_by(id: holiday.pricetype_id).try(:title) %> <br> <br>
+    <%= image_tag(holiday.photos[1].url, size: "500x300")%>	<br> <br>
+		<%= link_to "Read More", holiday_path(holiday.id) %>
+   	<hr>
+  <% end %>
+<% end %>
