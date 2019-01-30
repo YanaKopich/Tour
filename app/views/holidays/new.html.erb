@@ -1,2 +1,16 @@
-<h1>Holidays#new</h1>
-<p>Find me in app/views/holidays/new.html.erb</p>
+<h1>Add new tour</h1>
+<h3>Please fill in all the fields</h3>
+<%= form_for @holiday, url: {action: "create"} do |f| %>
+  <strong>Tour title</strong><br>
+    <%= f.text_field :name %><br />
+  <strong>Tour description</strong><br>
+    <%= f.text_area :description, size: "60x12" %><br />
+  <strong>Price</strong><br>
+    <%= f.text_field :price %>
+    <%= f.select :pricetype_id  , Pricetype.all.collect {|p| [ p.title, p.id ]}, :prompt => 'Choose a type of payment'%> <br>
+  <strong>Contacts</strong><br>
+    <%= f.text_area :contacts, size: "60x12" %><br />
+  <strong>Add photos</strong><br>
+    <%= f.file_field :photos, multiple: true %><br><br>
+  <%= f.submit "Create" %>
+<% end %>

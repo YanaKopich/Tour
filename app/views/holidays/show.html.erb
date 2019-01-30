@@ -1,2 +1,4 @@
 <h1>Holidays#show</h1>
 <p>Find me in app/views/holidays/show.html.erb</p>
+
+	Category: <%= Pricetype.find_by(id: @holiday.pricetype_id).try(:title) %> <br>

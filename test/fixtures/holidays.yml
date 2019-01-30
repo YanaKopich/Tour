@@ -3,7 +3,7 @@
 one:
   name: MyString
   price: 1
-  pricetype: MyString
+  pricetype_id: MyString
   description: MyString
   contacts: MyString
   user_id: 1
@@ -11,7 +11,7 @@ one:
 two:
   name: MyString
   price: 1
-  pricetype: MyString
+  pricetype_id: MyString
   description: MyString
   contacts: MyString
   user_id: 1
